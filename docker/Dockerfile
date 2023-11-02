@@ -6,13 +6,13 @@ COPY frontend/ /frontend/
 WORKDIR /frontend
 ENV PUBLIC_PATH="/static/_nuxt/"
 # hadolint ignore=DL3008
-RUN apt-get update \
- && apt-get install -y --no-install-recommends git python3 make g++ ca-certificates \
- && git config --global url."https://github.com/".insteadOf git://github.com/ \
- && yarn install --network-timeout 1000000 \
- && yarn build \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends git python3 make g++ ca-certificates
+RUN git config --global url."https://github.com/".insteadOf git://github.com/
+RUN yarn install --network-timeout 1000000
+RUN yarn build
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
 
 FROM python:${PYTHON_VERSION} AS backend-builder
 
