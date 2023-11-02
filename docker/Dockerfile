@@ -9,7 +9,11 @@ ENV PUBLIC_PATH="/static/_nuxt/"
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends git python3 make g++ ca-certificates
 RUN git config --global url."https://github.com/".insteadOf git://github.com/
-RUN yarn install --network-timeout 1000000
+RUN apt-get install -y curl
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install -y yarn
+RUN yarn install --network-timeout 10000000
 RUN yarn build
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
