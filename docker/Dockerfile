@@ -10,6 +10,7 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends git python3 make g++ ca-certificates
 RUN git config --global url."https://github.com/".insteadOf git://github.com/
 RUN apt-get install -y curl
+RUN apt-get install -y gnupg
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y yarn
