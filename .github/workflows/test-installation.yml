@@ -1,8 +1,8 @@
 name: Test installation and doccano commands
 
 on:
-  schedule:
-    - cron: "15 22 * * *"
+  #schedule:
+    #- cron: "15 22 * * *"
 
 jobs:
   test:
